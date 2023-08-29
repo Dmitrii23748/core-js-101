@@ -205,8 +205,9 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  const res = arr.reduce((acc, val) => `${acc}${val.toString()}\n`, '').trim();
+  return res;
 }
 
 /**
@@ -277,8 +278,9 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  const res = arr.reduce((acc, val, i) => acc.concat(new Array(i + 1).fill(val)), []);
+  return res;
 }
 
 
@@ -475,8 +477,13 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  const result = new Array(n).fill(null);
+  return result.map((item, i) => {
+    const elem = Array(n).fill(0);
+    elem[i] = 1;
+    return elem;
+  });
 }
 
 /**
@@ -492,8 +499,9 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  const result = new Array(end - start + 1).fill(null);
+  return result.map((item, i) => start + i);
 }
 
 /**
@@ -599,8 +607,14 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const result = Math.floor(arr.length / 2);
+  if (arr.length % 2 !== 0 && arr.length !== 1) {
+    const resultElem = [];
+    resultElem.push(arr[result]);
+    return arr.slice(-result).concat(resultElem).concat(arr.slice(0, result));
+  }
+  return arr.slice(-result).concat(arr.slice(0, result));
 }
 
 
